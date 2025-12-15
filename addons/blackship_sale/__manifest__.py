@@ -7,6 +7,7 @@
     "depends": ["crm", "sale", "sale_crm", "contacts", "account"],
     "data": [
         "security/ir.model.access.csv",
+        "data/blackship_stage_data.xml",
         "views/blackship_stage_views.xml",
         "views/blackship_checklist_views.xml",
         "views/blackship_create_proposal_wizard_views.xml",

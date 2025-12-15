@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo noupdate="1">
+    <record id="blackship_stage_intake" model="blackship.stage">
+        <field name="name">Intake</field>
+        <field name="sequence">10</field>
+        <field name="probability">5</field>
+    </record>
+
+    <record id="blackship_stage_qualify" model="blackship.stage">
+        <field name="name">Qualify</field>
+        <field name="sequence">20</field>
+        <field name="probability">15</field>
+        <field name="is_gate">True</field>
+        <field name="required_fields" eval="{'email_from': True}"/>
+    </record>
+
+    <record id="blackship_stage_discovery" model="blackship.stage">
+        <field name="name">Discovery</field>
+        <field name="sequence">30</field>
+        <field name="probability">25</field>
+        <field name="is_gate">True</field>
+        <field name="required_fields" eval="{'description': True}"/>
+    </record>
+
+    <record id="blackship_stage_solutioning" model="blackship.stage">
+        <field name="name">Solutioning</field>
+        <field name="sequence">40</field>
+        <field name="probability">40</field>
+        <field name="is_gate">True</field>
+        <field name="required_fields" eval="{'expected_revenue': True, 'description': True}"/>
+    </record>
+
+    <record id="blackship_stage_proposal" model="blackship.stage">
+        <field name="name">Proposal</field>
+        <field name="sequence">50</field>
+        <field name="probability">60</field>
+    </record>
+
+    <record id="blackship_stage_negotiation" model="blackship.stage">
+        <field name="name">Negotiation</field>
+        <field name="sequence">60</field>
+        <field name="probability">75</field>
+    </record>
+
+    <record id="blackship_stage_commit" model="blackship.stage">
+        <field name="name">Commit</field>
+        <field name="sequence">70</field>
+        <field name="probability">90</field>
+        <field name="is_gate">True</field>
+        <field name="required_fields" eval="{'expected_revenue': True, 'email_from': True}"/>
+    </record>
+
+    <record id="blackship_stage_won" model="blackship.stage">
+        <field name="name">Won</field>
+        <field name="sequence">80</field>
+        <field name="probability">100</field>
+    </record>
+
+    <record id="blackship_stage_lost" model="blackship.stage">
+        <field name="name">Lost</field>
+        <field name="sequence">90</field>
+        <field name="probability">0</field>
+    </record>
+</odoo>
