@@ -32,3 +32,5 @@ Load translations back into the database:
 ./odoo-bin -d <database_name> --addons-path=addons --i18n-import=addons/blackship_sale/i18n/it.po --language=it_IT
 ```
 
+The Italian catalog translates all user-facing labels, wizard messages, gate blocking errors, approval errors, and report headings. Regenerate `blackship_sale.pot` and refresh `it.po` whenever new strings are added.
+

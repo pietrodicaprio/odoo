@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-01 00:00+0000\n"
-"PO-Revision-Date: 2024-01-01 00:00+0000\n"
+"POT-Creation-Date: 2024-07-01 00:00+0000\n"
+"PO-Revision-Date: 2024-07-01 00:00+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -13,16 +13,305 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: blackship_sale
-#: model:ir.model.fields,field_description:blackship_sale.field_sale_order_is_blackship
+msgid "BlackShip Sales"
+msgstr ""
+
+#. module: blackship_sale
+msgid "BlackShip Sales customizations"
+msgstr ""
+
+#. module: blackship_sale
+msgid "BlackShip Stage"
+msgstr ""
+
+#. module: blackship_sale
+msgid "BlackShip Stages"
+msgstr ""
+
+#. module: blackship_sale
+msgid "Configure the stages for the BlackShip process."
+msgstr ""
+
+#. module: blackship_sale
+msgid "Stage Name"
+msgstr ""
+
+#. module: blackship_sale
+msgid "Probability (%)"
+msgstr ""
+
+#. module: blackship_sale
+msgid "Expected probability of reaching this stage."
+msgstr ""
+
+#. module: blackship_sale
+msgid "Gate"
+msgstr ""
+
+#. module: blackship_sale
+msgid "Required Fields"
+msgstr ""
+
+#. module: blackship_sale
+msgid "Fields required to complete this gate."
+msgstr ""
+
+#. module: blackship_sale
+msgid "SLA (Hours)"
+msgstr ""
+
+#. module: blackship_sale
+msgid "Target resolution time for this stage, in hours."
+msgstr ""
+
+#. module: blackship_sale
+msgid "BlackShip Checklist"
+msgstr ""
+
+#. module: blackship_sale
+msgid "BlackShip Checklist Item"
+msgstr ""
+
+#. module: blackship_sale
+msgid "Lead"
+msgstr ""
+
+#. module: blackship_sale
+msgid "Lead/Opportunity"
+msgstr ""
+
+#. module: blackship_sale
+msgid "Stage"
+msgstr ""
+
+#. module: blackship_sale
+msgid "Name"
+msgstr ""
+
+#. module: blackship_sale
+msgid "Done"
+msgstr ""
+
+#. module: blackship_sale
+msgid "Mandatory"
+msgstr ""
+
+#. module: blackship_sale
+msgid "Sequence"
+msgstr ""
+
+#. module: blackship_sale
+msgid "Deleting checklist items is not allowed."
+msgstr ""
+
+#. module: blackship_sale
+msgid "Customer"
+msgstr ""
+
+#. module: blackship_sale
+msgid "Pricelist"
+msgstr ""
+
+#. module: blackship_sale
+msgid "Note"
+msgstr ""
+
+#. module: blackship_sale
+msgid "Please select a lead."
+msgstr ""
+
+#. module: blackship_sale
+msgid "Please select a customer."
+msgstr ""
+
+#. module: blackship_sale
+msgid "Create BlackShip Proposal"
+msgstr ""
+
+#. module: blackship_sale
+msgid "Create Proposal"
+msgstr ""
+
+#. module: blackship_sale
+msgid "Cancel"
+msgstr ""
+
+#. module: blackship_sale
+msgid "BlackShip Discount Threshold"
+msgstr ""
+
+#. module: blackship_sale
+msgid "Maximum allowed discount percentage before approval is required."
+msgstr ""
+
+#. module: blackship_sale
+msgid "BlackShip"
+msgstr ""
+
+#. module: blackship_sale
+msgid "BlackShip approval settings"
+msgstr ""
+
+#. module: blackship_sale
+msgid "Discount approval threshold"
+msgstr ""
+
+#. module: blackship_sale
+msgid "Specify the maximum allowed discount percentage on BlackShip orders before approval is required."
+msgstr ""
+
+#. module: blackship_sale
 msgid "BlackShip Proposal"
 msgstr ""
 
 #. module: blackship_sale
-#: model:ir.model.fields,field_description:blackship_sale.field_sale_order_quote_version
 msgid "Quote Version"
 msgstr ""
 
 #. module: blackship_sale
-#: model_terms:ir.ui.view,arch_db:blackship_sale.sale_order_view_blackship_form
+msgid "Approvals"
+msgstr ""
+
+#. module: blackship_sale
+msgid "This BlackShip order has discounts above the allowed threshold and requires approval before confirmation."
+msgstr ""
+
+#. module: blackship_sale
 msgid "Crea revisione"
+msgstr ""
+
+#. module: blackship_sale
+msgid "BlackShip Approval"
+msgstr ""
+
+#. module: blackship_sale
+msgid "Sale Order"
+msgstr ""
+
+#. module: blackship_sale
+msgid "Companies"
+msgstr ""
+
+#. module: blackship_sale
+msgid "Config Settings"
+msgstr ""
+
+#. module: blackship_sale
+msgid "Requested By"
+msgstr ""
+
+#. module: blackship_sale
+msgid "Pending"
+msgstr ""
+
+#. module: blackship_sale
+msgid "Approved"
+msgstr ""
+
+#. module: blackship_sale
+msgid "Rejected"
+msgstr ""
+
+#. module: blackship_sale
+msgid "Status"
+msgstr ""
+
+#. module: blackship_sale
+msgid "Comment"
+msgstr ""
+
+#. module: blackship_sale
+msgid "Approve"
+msgstr ""
+
+#. module: blackship_sale
+msgid "Reject"
+msgstr ""
+
+#. module: blackship_sale
+msgid "Offerta BlackShip"
+msgstr ""
+
+#. module: blackship_sale
+msgid "Offerta BlackShip v%s"
+msgstr ""
+
+#. module: blackship_sale
+msgid "Order Reference"
+msgstr ""
+
+#. module: blackship_sale
+msgid "Validity"
+msgstr ""
+
+#. module: blackship_sale
+msgid "Salesperson"
+msgstr ""
+
+#. module: blackship_sale
+msgid "Description"
+msgstr ""
+
+#. module: blackship_sale
+msgid "Quantity"
+msgstr ""
+
+#. module: blackship_sale
+msgid "Unit Price"
+msgstr ""
+
+#. module: blackship_sale
+msgid "Discount"
+msgstr ""
+
+#. module: blackship_sale
+msgid "Subtotal"
+msgstr ""
+
+#. module: blackship_sale
+msgid "Taxes"
+msgstr ""
+
+#. module: blackship_sale
+msgid "Total"
+msgstr ""
+
+#. module: blackship_sale
+msgid "Intake"
+msgstr ""
+
+#. module: blackship_sale
+msgid "Qualify"
+msgstr ""
+
+#. module: blackship_sale
+msgid "Discovery"
+msgstr ""
+
+#. module: blackship_sale
+msgid "Solutioning"
+msgstr ""
+
+#. module: blackship_sale
+msgid "Proposal"
+msgstr ""
+
+#. module: blackship_sale
+msgid "Negotiation"
+msgstr ""
+
+#. module: blackship_sale
+msgid "Commit"
+msgstr ""
+
+#. module: blackship_sale
+msgid "Won"
+msgstr ""
+
+#. module: blackship_sale
+msgid "Lost"
+msgstr ""
+
+#. module: blackship_sale
+msgid "BlackShip Create Proposal Wizard"
 msgstr ""
