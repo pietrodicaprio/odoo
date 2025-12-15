@@ -123,6 +123,11 @@ class Lead(models.Model):
         compute='_compute_company_id', readonly=False, store=True)
     referred = fields.Char('Referred By')
     description = fields.Html('Notes')
+    blackship_stage_id = fields.Many2one('blackship.stage', string=_('BlackShip Stage'))
+    risk_score = fields.Integer(string=_('Risk Score'))
+    discovery_notes = fields.Html(string=_('Discovery Notes'))
+    solution_brief = fields.Html(string=_('Solution Brief'))
+    gate_ok = fields.Boolean(string=_('Gate OK'), compute='_compute_gate_ok')
     active = fields.Boolean('Active', default=True, tracking=True)
     type = fields.Selection([
         ('lead', 'Lead'), ('opportunity', 'Opportunity')], required=True, tracking=15, index=True,
@@ -354,6 +359,37 @@ class Lead(models.Model):
             date_create = fields.Datetime.from_string(lead.create_date)
             date_close = fields.Datetime.from_string(lead.date_closed)
             lead.day_close = abs((date_close - date_create).days)
+
+    @api.depends('blackship_stage_id', 'blackship_stage_id.required_fields', 'risk_score', 'discovery_notes', 'solution_brief')
+    def _compute_gate_ok(self):
+        for lead in self:
+            if not lead.blackship_stage_id:
+                lead.gate_ok = True
+                continue
+
+            required_fields = lead.blackship_stage_id.required_fields
+            if not isinstance(required_fields, dict):
+                required_fields = {}
+
+            gate_ok = True
+            for field_name, is_required in required_fields.items():
+                if not is_required:
+                    continue
+                field = lead._fields.get(field_name)
+                if not field:
+                    gate_ok = False
+                    break
+                value = lead[field_name]
+                if field.type == 'html':
+                    empty = is_html_empty(value)
+                elif field.type == 'boolean':
+                    empty = value is False or value is None
+                else:
+                    empty = not bool(value)
+                if empty:
+                    gate_ok = False
+                    break
+            lead.gate_ok = gate_ok
 
     @api.depends('partner_id')
     def _compute_name(self):
