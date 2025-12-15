@@ -12,6 +12,7 @@
         "views/blackship_create_proposal_wizard_views.xml",
         "views/res_config_settings_views.xml",
         "views/sale_order_views.xml",
+        "report/blackship_quote_report.xml",
     ],
     "application": True,
     "license": "LGPL-3",
