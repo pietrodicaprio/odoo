@@ -12,7 +12,7 @@ from odoo import api, fields, models, tools
 from odoo.addons.iap.tools import iap_tools
 from odoo.addons.mail.tools import mail_validation
 from odoo.addons.phone_validation.tools import phone_validation
-from odoo.exceptions import UserError, AccessError
+from odoo.exceptions import UserError, AccessError, ValidationError
 from odoo.osv import expression
 from odoo.tools.translate import _
 from odoo.tools import date_utils, email_split, is_html_empty, groupby, parse_contact_from_email, SQL
@@ -778,6 +778,9 @@ class Lead(models.Model):
         return leads
 
     def write(self, vals):
+        if 'blackship_stage_id' in vals:
+            self._check_blackship_stage_requirements(vals)
+
         if vals.get('website'):
             vals['website'] = self.env['res.partner']._clean_website(vals['website'])
 
@@ -826,6 +829,67 @@ class Lead(models.Model):
             vals.pop('date_closed', False)
             result = super(Lead, leads_already_won).write(vals)
         return result
+
+    def _check_blackship_stage_requirements(self, vals):
+        new_stage_id = vals.get('blackship_stage_id')
+        if not new_stage_id:
+            return
+
+        stage = self.env['blackship.stage'].browse(new_stage_id)
+        if not stage or not stage.is_gate:
+            return
+
+        for lead in self:
+            missing_fields = lead._get_missing_required_fields(stage, vals)
+            incomplete_items = lead._get_incomplete_checklist_items(stage)
+            if not missing_fields and not incomplete_items:
+                continue
+
+            details = []
+            if missing_fields:
+                details.append(_("Missing fields: %s") % ", ".join(missing_fields))
+            if incomplete_items:
+                checklist_names = incomplete_items[:5].mapped('name')
+                details.append(_("Incomplete mandatory checklist items: %s") % ", ".join(checklist_names))
+
+            message = _(
+                "Cannot move to gate %(stage)s because requirements are not satisfied:\n%(details)s",
+                stage=stage.display_name,
+                details="\n".join("- %s" % detail for detail in details),
+            )
+            raise ValidationError(message)
+
+    def _get_missing_required_fields(self, stage, vals):
+        missing_fields = []
+        required_fields = stage.required_fields if isinstance(stage.required_fields, dict) else {}
+
+        for field_name, is_required in required_fields.items():
+            if not is_required:
+                continue
+
+            field = self._fields.get(field_name)
+            if not field:
+                missing_fields.append(field_name)
+                continue
+
+            value = vals.get(field_name, self[field_name])
+            if field.type == 'html':
+                empty = is_html_empty(value)
+            elif field.type == 'boolean':
+                empty = value is False or value is None
+            else:
+                empty = not bool(value)
+
+            if empty:
+                missing_fields.append(field.string or field_name)
+
+        return missing_fields
+
+    def _get_incomplete_checklist_items(self, stage):
+        checklist_items = self.blackship_checklist_ids.filtered(
+            lambda item: item.mandatory and (not item.stage_id or item.stage_id == stage) and not item.is_done
+        )
+        return checklist_items.sorted(key=lambda item: (item.sequence, item.id))
 
     @api.model
     def search_fetch(self, domain, field_names, offset=0, limit=None, order=None):
