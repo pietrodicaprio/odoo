@@ -423,6 +423,26 @@
             </field>
         </record>
 
+        <record id="view_crm_lead_kanban_blackship_badges" model="ir.ui.view">
+            <field name="name">crm.lead.kanban.blackship.badges</field>
+            <field name="model">crm.lead</field>
+            <field name="inherit_id" ref="crm.view_crm_lead_kanban"/>
+            <field name="arch" type="xml">
+                <xpath expr="//t[@t-name='card']/field[@name='tag_ids']" position="after">
+                    <div class="d-flex flex-wrap gap-1 mt-1">
+                        <field name="blackship_stage_id" invisible="1"/>
+                        <field name="gate_ok" invisible="1"/>
+                        <span t-if="record.blackship_stage_id.raw_value" class="badge text-bg-info">
+                            <t t-esc="_(\"BlackShip\")"/>: <t t-esc="record.blackship_stage_id.value"/>
+                        </span>
+                        <span t-if="record.gate_ok.raw_value is False" class="badge text-bg-warning text-dark">
+                            <t t-esc="_(\"Gate incompleto\")"/>
+                        </span>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+
         <record id="crm_case_calendar_view_leads" model="ir.ui.view">
             <field name="name">crm.lead.calendar.lead</field>
             <field name="model">crm.lead</field>
