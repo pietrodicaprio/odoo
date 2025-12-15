@@ -10,6 +10,7 @@
         "views/blackship_stage_views.xml",
         "views/blackship_checklist_views.xml",
         "views/blackship_create_proposal_wizard_views.xml",
+        "views/res_config_settings_views.xml",
         "views/sale_order_views.xml",
     ],
     "application": True,
