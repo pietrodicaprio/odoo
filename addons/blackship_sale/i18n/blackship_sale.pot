@@ -11,3 +11,18 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: blackship_sale
+#: model:ir.model.fields,field_description:blackship_sale.field_sale_order_is_blackship
+msgid "BlackShip Proposal"
+msgstr ""
+
+#. module: blackship_sale
+#: model:ir.model.fields,field_description:blackship_sale.field_sale_order_quote_version
+msgid "Quote Version"
+msgstr ""
+
+#. module: blackship_sale
+#: model_terms:ir.ui.view,arch_db:blackship_sale.sale_order_view_blackship_form
+msgid "Crea revisione"
+msgstr ""
