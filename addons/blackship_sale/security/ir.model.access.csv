@@ -2,3 +2,5 @@ id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_blackship_stage_user,blackship.stage.user,model_blackship_stage,base.group_user,1,1,1,0
 access_blackship_checklist_item_user,blackship.checklist.item.user,model_blackship_checklist_item,base.group_user,1,1,1,0
 access_blackship_create_proposal_wizard_user,blackship.create.proposal.wizard.user,model_blackship_create_proposal_wizard,base.group_user,1,1,1,0
+access_blackship_approval_user,blackship.approval.user,model_blackship_approval,base.group_user,1,1,1,0
+access_blackship_approval_manager,blackship.approval.manager,model_blackship_approval,sales_team.group_sale_manager,1,1,1,1
