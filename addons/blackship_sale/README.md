@@ -34,3 +34,11 @@ Load translations back into the database:
 
 The Italian catalog translates all user-facing labels, wizard messages, gate blocking errors, approval errors, and report headings. Regenerate `blackship_sale.pot` and refresh `it.po` whenever new strings are added.
 
+## Development checks
+
+Run the i18n guardrail script to ensure translation files exist and user-facing errors remain wrapped in `_()`:
+
+```bash
+bash scripts/check_i18n.sh
+```
+
