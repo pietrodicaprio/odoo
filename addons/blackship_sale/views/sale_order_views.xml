@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="sale_order_view_blackship_form" model="ir.ui.view">
+        <field name="name">sale.order.form.blackship</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet/div[@class='oe_button_box']" position="inside">
+                <button name="action_blackship_new_revision"
+                    type="object"
+                    class="oe_stat_button"
+                    icon="fa-files-o"
+                    string="Crea revisione"
+                    attrs="{'invisible': [('is_blackship', '=', False)]}"/>
+            </xpath>
+
+            <xpath expr="//group[@name='order_details']" position="inside">
+                <group name="blackship_info" attrs="{'invisible': [('is_blackship', '=', False)]}">
+                    <field name="is_blackship" readonly="1"/>
+                    <field name="quote_version" readonly="1"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>
