@@ -257,6 +257,22 @@
                             <page string="Internal Notes" name="internal_notes">
                                 <field name="description" placeholder="Add a description..." options="{'collaborative': true}" />
                             </page>
+                            <page string="BlackShip" name="blackship">
+                                <group>
+                                    <group>
+                                        <field name="blackship_stage_id"/>
+                                        <field name="risk_score"/>
+                                        <field name="gate_ok" readonly="1"/>
+                                    </group>
+                                    <group>
+                                        <field name="discovery_notes" nolabel="1"/>
+                                        <field name="solution_brief" nolabel="1"/>
+                                    </group>
+                                </group>
+                                <div class="alert alert-warning" role="alert" attrs="{'invisible': [('gate_ok', '=', True)]}">
+                                    <span>Your BlackShip stage requirements are not satisfied.</span>
+                                </div>
+                            </page>
                             <page name="extra" string="Extra Info" invisible="type == 'opportunity'">
                                 <group>
                                     <group string="Email" groups="base.group_no_one">
