@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="blackship_sale_report_assets" inherit_id="web.report_assets_common" name="BlackShip Sale Report Assets">
+        <xpath expr="." position="inside">
+            <link rel="stylesheet" type="text/scss" href="/blackship_sale/static/src/scss/report.scss"/>
+        </xpath>
+    </template>
+
+    <report
+        id="action_report_blackship_quote"
+        model="sale.order"
+        string="Offerta BlackShip"
+        report_type="qweb-pdf"
+        name="blackship_sale.report_blackship_quote"
+        file="blackship_sale.report_blackship_quote"
+        print_report_name="'Offerta BlackShip v%s' % (object.quote_version or 1)"
+    />
+
+    <template id="report_blackship_quote">
+        <t t-call="web.external_layout">
+            <t t-foreach="docs" t-as="order">
+                <div class="blackship-quote">
+                    <h2 class="text-center" t-esc="_('Offerta BlackShip v%s') % (order.quote_version or 1)"/>
+
+                    <div class="row mt16 mb16">
+                        <div class="col-auto">
+                            <strong t-esc="_('Customer')"/>
+                            <div t-esc="order.partner_id.display_name"/>
+                        </div>
+                        <div class="col-auto">
+                            <strong t-esc="_('Order Reference')"/>
+                            <div t-esc="order.name"/>
+                        </div>
+                        <div class="col-auto">
+                            <strong t-esc="_('Validity')"/>
+                            <div t-esc="format_date(order.validity_date) if order.validity_date else '-'"/>
+                        </div>
+                        <div class="col-auto">
+                            <strong t-esc="_('Salesperson')"/>
+                            <div t-esc="order.user_id.display_name or '-'"/>
+                        </div>
+                    </div>
+
+                    <table class="table table-sm blackship-lines" name="order_lines">
+                        <thead>
+                            <tr>
+                                <th t-esc="_('Description')"/>
+                                <th class="text-end" t-esc="_('Quantity')"/>
+                                <th class="text-end" t-esc="_('Unit Price')"/>
+                                <th class="text-end" t-esc="_('Discount')"/>
+                                <th class="text-end" t-esc="_('Subtotal')"/>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr t-foreach="order.order_line" t-as="line">
+                                <td>
+                                    <span t-esc="line.name"/>
+                                </td>
+                                <td class="text-end" t-esc="line.product_uom_qty"/>
+                                <td class="text-end" t-esc="formatLang(line.price_unit, currency_obj=order.currency_id)"/>
+                                <td class="text-end" t-esc="formatLang(line.discount, dp='Discount')"/>
+                                <td class="text-end" t-esc="formatLang(line.price_subtotal, currency_obj=order.currency_id)"/>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="row justify-content-end">
+                        <div class="col-auto">
+                            <table class="table table-sm table-borderless blackship-totals">
+                                <tr>
+                                    <th t-esc="_('Subtotal')"/>
+                                    <td class="text-end" t-esc="formatLang(order.amount_untaxed, currency_obj=order.currency_id)"/>
+                                </tr>
+                                <tr>
+                                    <th t-esc="_('Taxes')"/>
+                                    <td class="text-end" t-esc="formatLang(order.amount_tax, currency_obj=order.currency_id)"/>
+                                </tr>
+                                <tr class="blackship-total">
+                                    <th t-esc="_('Total')"/>
+                                    <td class="text-end" t-esc="formatLang(order.amount_total, currency_obj=order.currency_id)"/>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </t>
+    </template>
+</odoo>

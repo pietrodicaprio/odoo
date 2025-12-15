@@ -1,0 +1,30 @@
+.blackship-quote {
+    h2 {
+        font-size: 24px;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+    }
+
+    .blackship-lines {
+        th {
+            background-color: #f5f5f5;
+            border-bottom: 1px solid #ccc;
+        }
+
+        td {
+            vertical-align: top;
+        }
+    }
+
+    .blackship-totals {
+        th {
+            padding-right: 16px;
+        }
+
+        .blackship-total th,
+        .blackship-total td {
+            border-top: 1px solid #000;
+            font-weight: 600;
+        }
+    }
+}
