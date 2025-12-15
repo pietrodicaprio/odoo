@@ -8,6 +8,7 @@
     "data": [
         "security/ir.model.access.csv",
         "views/blackship_stage_views.xml",
+        "views/blackship_checklist_views.xml",
     ],
     "application": True,
     "license": "LGPL-3",
