@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_blackship_stage_tree" model="ir.ui.view">
+        <field name="name">blackship.stage.tree</field>
+        <field name="model">blackship.stage</field>
+        <field name="arch" type="xml">
+            <tree string="BlackShip Stages">
+                <field name="sequence"/>
+                <field name="name"/>
+                <field name="probability"/>
+                <field name="is_gate"/>
+                <field name="sla_hours"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_blackship_stage_form" model="ir.ui.view">
+        <field name="name">blackship.stage.form</field>
+        <field name="model">blackship.stage</field>
+        <field name="arch" type="xml">
+            <form string="BlackShip Stage">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="sequence"/>
+                        <field name="probability"/>
+                        <field name="is_gate"/>
+                        <field name="required_fields" widget="json"/>
+                        <field name="sla_hours"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_blackship_stage" model="ir.actions.act_window">
+        <field name="name">BlackShip Stages</field>
+        <field name="res_model">blackship.stage</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p>Configure the stages for the BlackShip process.</p>
+        </field>
+    </record>
+
+    <menuitem id="menu_blackship_stage" name="BlackShip Stages" parent="crm.menu_crm_config" action="action_blackship_stage" groups="base.group_user"/>
+</odoo>

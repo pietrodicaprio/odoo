@@ -5,7 +5,10 @@
     "category": "Sales",
     "summary": "BlackShip Sales customizations",
     "depends": ["crm", "sale", "contacts", "account"],
-    "data": [],
+    "data": [
+        "security/ir.model.access.csv",
+        "views/blackship_stage_views.xml",
+    ],
     "application": True,
     "license": "LGPL-3",
 }
